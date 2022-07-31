@@ -33,7 +33,7 @@ $ProgressPreference = 'SilentlyContinue'
 Write-Output 'Setting up git authentication credentials and github bot authentication token...'
 git config --global user.name 'winget-pkgs-automation-bot[bot]' # Set git username
 git config --global user.email '93540089+winget-pkgs-automation-bot[bot]@users.noreply.github.com' # Set git email
-$AuthToken = $(node auth.js) # Get bot token from auth.js which was initialized in the workflow
+$AuthToken = $env:GITHUB_TOKEN # Get bot token from auth.js which was initialized in the workflow
 # Set wingetdev.exe path variable which will be used in the whole automation to execute wingetdev.exe commands
 Set-Variable -Name WinGetDev -Value (Resolve-Path -Path ..\..\tools\wingetdev\wingetdev.exe).Path -Option AllScope, Constant
 
